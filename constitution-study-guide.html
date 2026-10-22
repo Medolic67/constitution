@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Constitution Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f2ed; --card:#ffffff; --ink:#1b1d22; --muted:#5f6571; --line:#e2ded4;
+  --leg:#2457a6; --leg-soft:#e3ecf9;
+  --exe:#b3362f; --exe-soft:#f9e5e3;
+  --jud:#20804f; --jud-soft:#e0f2e8;
+  --sta:#b7791f; --sta-soft:#fbf0dc;
+  --peo:#6b46c1; --peo-soft:#ede7fa;
+  --neu:#3d4452; --neu-soft:#eceef2;
+  --pw:#0b7a83; --pw-soft:#ddf2f3; --lim:#c0265e; --lim-soft:#fce6ee;
+  --shadow:0 1px 2px rgba(0,0,0,.05),0 2px 8px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121419; --card:#1b1e25; --ink:#e9e7e2; --muted:#9ca2ad; --line:#2b2f39;
+    --leg:#7fa8ec; --leg-soft:#1b2740; --exe:#ef8a82; --exe-soft:#3a1f1e;
+    --jud:#6fcf9a; --jud-soft:#17301f; --sta:#e7b45e; --sta-soft:#33281a;
+    --peo:#b39af0; --peo-soft:#2a2240; --neu:#c3c8d2; --neu-soft:#262a33;
+    --shadow:none;
+    --pw:#5fd0d8; --pw-soft:#11302f; --lim:#f08aac; --lim-soft:#3a1a27;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121419; --card:#1b1e25; --ink:#e9e7e2; --muted:#9ca2ad; --line:#2b2f39;
+  --leg:#7fa8ec; --leg-soft:#1b2740; --exe:#ef8a82; --exe-soft:#3a1f1e;
+  --jud:#6fcf9a; --jud-soft:#17301f; --sta:#e7b45e; --sta-soft:#33281a;
+  --peo:#b39af0; --peo-soft:#2a2240; --neu:#c3c8d2; --neu-soft:#262a33;
+  --shadow:none;
+  --pw:#5fd0d8; --pw-soft:#11302f; --lim:#f08aac; --lim-soft:#3a1a27;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;line-height:1.25}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* header */
+header.top{padding:26px 0 14px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+header.top h1{margin:0;font-size:2rem}
+header.top p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+.theme-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer;font:inherit;font-size:.85rem}
+
+/* tabs */
+.tabbar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 14px;font:inherit;font-size:.88rem;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.tab .dot{width:9px;height:9px;border-radius:50%;background:var(--c,var(--neu))}
+.tab:hover{border-color:var(--c,var(--neu))}
+.tab[aria-selected="true"]{background:var(--c,var(--neu));border-color:var(--c,var(--neu));color:#fff}
+.tab[aria-selected="true"] .dot{background:#fff}
+:root[data-theme="dark"] .tab[aria-selected="true"]{color:#111}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tab[aria-selected="true"]{color:#111}}
+
+.panel{display:none;padding:26px 0 70px;animation:fade .2s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* article banner */
+.banner{border-radius:14px;padding:20px 24px;background:var(--soft);border:1px solid var(--line);border-left:6px solid var(--c);margin-bottom:22px}
+.banner .kicker{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.banner h2{margin:2px 0 8px;font-size:1.9rem}
+.banner p{margin:0;max-width:70ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:.82rem}
+.chip b{color:var(--c)}
+
+/* section cards */
+.sections{display:grid;gap:14px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);display:grid;grid-template-columns:62px 1fr;overflow:hidden}
+.sec .num{background:var(--soft);color:var(--c);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:16px;font-weight:700}
+.sec .num small{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.sec .num span{font-size:1.6rem;font-family:"Source Serif 4",serif;line-height:1}
+.sec .body{padding:14px 20px 16px}
+.sec h3{margin:0 0 6px;font-size:1.15rem}
+.sec ul{margin:0;padding-left:18px}
+.sec li{margin:4px 0}
+.term{display:inline-block;background:var(--soft);color:var(--c);font-weight:600;font-size:.74rem;padding:1px 8px;border-radius:999px;margin-left:3px;white-space:nowrap;vertical-align:1px}
+.key{font-weight:600}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:6px}
+.box{border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+.box h4{margin:0 0 4px;font-size:.9rem;color:var(--c)}
+.box ul{font-size:.92rem}
+
+.callout{margin-top:18px;background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:14px 18px;font-size:.93rem}
+.callout b{color:var(--c)}
+
+
+/* power / limit coding */
+.pl-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:-8px 0 16px;font-size:.86rem;color:var(--muted)}
+.pl-legend .k{font-size:.68rem;font-weight:800;letter-spacing:.07em;padding:2px 8px;border-radius:5px;color:var(--card);margin-left:6px}
+.pl-legend .k:first-child{margin-left:0}
+.pl-legend .k.pw{background:var(--pw)} .pl-legend .k.lim{background:var(--lim)} .pl-legend .k.rule{background:var(--muted)}
+.coded .sec ul{padding-left:0}
+.coded .sec li{list-style:none;margin:6px 0;padding:6px 10px 6px 12px;border-left:4px solid var(--line);border-radius:0 8px 8px 0;background:var(--bg)}
+.coded .sec li::before{display:inline-block;font-size:.6rem;font-weight:800;letter-spacing:.07em;padding:1px 6px;border-radius:4px;margin-right:8px;vertical-align:2px;color:var(--card)}
+.coded .sec li.pw{border-left-color:var(--pw);background:var(--pw-soft)}
+.coded .sec li.pw::before{content:"POWER";background:var(--pw)}
+.coded .sec li.lim{border-left-color:var(--lim);background:var(--lim-soft)}
+.coded .sec li.lim::before{content:"LIMIT";background:var(--lim)}
+.coded .sec li.rule::before{content:"RULE";background:var(--muted)}
+.coded .box.pwbox{border-top:4px solid var(--pw);background:var(--card)}
+.coded .box.limbox{border-top:4px solid var(--lim);background:var(--card)}
+.coded .box.pwbox h4{color:var(--pw)} .coded .box.limbox h4{color:var(--lim)}
+.coded .box li{padding:4px 8px;margin:4px 0}
+.coded .box li::before{display:none}
+
+/* branch theme helpers */
+.t-leg{--c:var(--leg);--soft:var(--leg-soft)}
+.t-exe{--c:var(--exe);--soft:var(--exe-soft)}
+.t-jud{--c:var(--jud);--soft:var(--jud-soft)}
+.t-sta{--c:var(--sta);--soft:var(--sta-soft)}
+.t-peo{--c:var(--peo);--soft:var(--peo-soft)}
+.t-neu{--c:var(--neu);--soft:var(--neu-soft)}
+
+/* overview map */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.mapcard{cursor:pointer;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);transition:transform .12s}
+.mapcard:hover{transform:translateY(-2px)}
+.mapcard .k{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--c)}
+.mapcard .h{font-family:"Source Serif 4",serif;font-size:1.15rem;font-weight:700;margin:2px 0 4px}
+.mapcard .d{font-size:.88rem;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0 6px;font-size:.88rem}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;background:var(--c);display:inline-block}
+
+/* bill of rights */
+.amend{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.am{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);position:relative}
+.am .rn{position:absolute;top:10px;right:14px;font-family:"Source Serif 4",serif;font-size:1.8rem;font-weight:700;color:var(--soft);line-height:1}
+.am h4{margin:0 0 6px;color:var(--c);font-size:1rem;padding-right:40px}
+.am ul{margin:0;padding-left:18px;font-size:.92rem}
+.groups{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;font-size:.85rem}
+.groups span{border-radius:999px;padding:3px 10px;background:var(--soft);color:var(--c);font-weight:600}
+
+/* processes */
+h2.sub{font-size:1.45rem;margin:34px 0 4px}
+p.subtext{margin:0 0 14px;color:var(--muted)}
+.flowcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow)}
+.flowcard h3{margin:0 0 10px;font-size:1.12rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flowcard .cite{font-family:Inter,sans-serif;font-size:.75rem;color:var(--muted);font-weight:500;border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:0}
+.step{flex:1 1 150px;min-width:140px;background:var(--soft);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;padding:9px 12px;font-size:.88rem;position:relative;margin:4px 22px 4px 0}
+.step:not(:last-child)::after{content:"→";position:absolute;right:-19px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:700}
+.step b{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.path{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.path h4{margin:0 0 6px;font-size:.88rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.path .step{margin:4px 0;flex:none;min-width:0}
+.path .step:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-17px;transform:translateX(-50%)}
+.path .step{margin-bottom:18px}
+.path .step:last-child{margin-bottom:4px}
+
+.flow .step{flex:1 1 190px;min-width:170px}
+.step .who{font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:var(--c)}
+.step .sh{display:flex;align-items:center;gap:8px;margin:4px 0 4px}
+.step .sh b{display:inline;font-size:.98rem;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:700}
+.step .n{flex:0 0 auto;min-width:26px;height:26px;padding:0 6px;border-radius:999px;background:var(--c);color:var(--card);font-weight:700;font-size:.8rem;display:inline-flex;align-items:center;justify-content:center}
+.step p{margin:0 0 8px;font-size:.86rem;line-height:1.45}
+.src{display:inline-block;font-size:.74rem;font-weight:600;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;white-space:nowrap}
+.check li .src{margin-left:4px;font-size:.68rem;padding:0 5px;vertical-align:1px}
+.or{text-align:center;font-weight:700;color:var(--muted);font-size:.8rem;margin:2px 0 8px}
+.note{font-size:.85rem;color:var(--muted);margin:10px 0 0}
+
+table{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--card)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{background:var(--neu-soft);font-weight:600;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:1px 9px;font-size:.78rem;font-weight:600;background:var(--soft);color:var(--c);margin:1px 2px 1px 0;white-space:nowrap}
+
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.check{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.check h4{margin:0 0 8px;color:var(--c)}
+.check .on{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:8px}
+.check ul{margin:2px 0 0;padding-left:18px;font-size:.9rem}
+
+.venn{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+
+.omit{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 18px;margin-top:22px}
+.omit summary{cursor:pointer;font-weight:600}
+.omit ul{margin:10px 0 2px;padding-left:20px;font-size:.92rem}
+
+@media (max-width:640px){
+  header.top h1{font-size:1.6rem}
+  .sec{grid-template-columns:46px 1fr}
+  .sec .num span{font-size:1.3rem}
+  .sec .body{padding:12px 14px}
+  .banner{padding:16px 18px}
+  .banner h2{font-size:1.5rem}
+  .paths{grid-template-columns:1fr}
+  .step{flex:1 1 100%;margin-right:0;margin-bottom:20px}
+  .flow .step:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-18px;transform:translateX(-50%)}
+}
+@media print{.tabbar,.theme-btn{display:none}.panel{display:block!important}.sec,.flowcard,.am{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>U.S. Constitution Study Guide</h1>
+      <p>Main points by article · removed or superseded clauses left out</p>
+    </div>
+    <button class="theme-btn" id="theme">◐ Theme</button>
+  </header>
+</div>
+
+<div class="tabbar">
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button class="tab t-neu" data-tab="overview"><span class="dot"></span>Overview</button>
+      <button class="tab t-leg" data-tab="a1"><span class="dot"></span>Art. I · Congress</button>
+      <button class="tab t-exe" data-tab="a2"><span class="dot"></span>Art. II · President</button>
+      <button class="tab t-jud" data-tab="a3"><span class="dot"></span>Art. III · Courts</button>
+      <button class="tab t-sta" data-tab="a4"><span class="dot"></span>Art. IV · States</button>
+      <button class="tab t-peo" data-tab="a5"><span class="dot"></span>Art. V · Amendments</button>
+      <button class="tab t-neu" data-tab="a6"><span class="dot"></span>Art. VI · Supremacy</button>
+      <button class="tab t-neu" data-tab="a7"><span class="dot"></span>Art. VII · Ratification</button>
+      <button class="tab t-peo" data-tab="bor"><span class="dot"></span>Bill of Rights</button>
+      <button class="tab t-neu" data-tab="powers"><span class="dot"></span>⚖ Powers &amp; Processes</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+<!-- ============ OVERVIEW ============ -->
+<section class="panel t-neu" id="overview">
+  <div class="banner">
+    <div class="kicker">Preamble</div>
+    <h2>"We the People…"</h2>
+    <p>Power comes from the people <span class="term">popular sovereignty</span>. The Preamble states the government's purposes but grants no powers by itself.</p>
+    <div class="chips">
+      <span class="chip">1 · Form a more perfect Union</span>
+      <span class="chip">2 · Establish justice</span>
+      <span class="chip">3 · Insure domestic tranquility</span>
+      <span class="chip">4 · Provide for the common defense</span>
+      <span class="chip">5 · Promote the general welfare</span>
+      <span class="chip">6 · Secure the blessings of liberty</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="t-leg"><i></i>Legislative</span>
+    <span class="t-exe"><i></i>Executive</span>
+    <span class="t-jud"><i></i>Judicial</span>
+    <span class="t-sta"><i></i>States</span>
+    <span class="t-peo"><i></i>Amendments &amp; rights</span>
+    <span class="t-neu"><i></i>General</span>
+  </div>
+
+  <div class="map">
+    <button class="mapcard t-leg" data-go="a1"><div class="k">Article I</div><div class="h">Legislative</div><div class="d">Congress makes laws · House + Senate · enumerated powers</div></button>
+    <button class="mapcard t-exe" data-go="a2"><div class="k">Article II</div><div class="h">Executive</div><div class="d">President enforces laws · Electoral College · commander in chief</div></button>
+    <button class="mapcard t-jud" data-go="a3"><div class="k">Article III</div><div class="h">Judicial</div><div class="d">Courts interpret laws · Supreme Court · treason defined</div></button>
+    <button class="mapcard t-sta" data-go="a4"><div class="k">Article IV</div><div class="h">The States</div><div class="d">Full faith &amp; credit · new states · republican government</div></button>
+    <button class="mapcard t-peo" data-go="a5"><div class="k">Article V</div><div class="h">Amendment</div><div class="d">Two ways to propose, two ways to ratify</div></button>
+    <button class="mapcard t-neu" data-go="a6"><div class="k">Article VI</div><div class="h">Supremacy</div><div class="d">Constitution is supreme law · no religious test</div></button>
+    <button class="mapcard t-neu" data-go="a7"><div class="k">Article VII</div><div class="h">Ratification</div><div class="d">9 of 13 states needed · signed Sept 17, 1787</div></button>
+    <button class="mapcard t-peo" data-go="bor"><div class="k">Amendments I–X</div><div class="h">Bill of Rights</div><div class="d">Individual liberties · limits on government</div></button>
+    <button class="mapcard t-neu" data-go="powers"><div class="k">Cross-cutting</div><div class="h">⚖ Powers &amp; Processes</div><div class="d">Who does what · step-by-step flows · checks &amp; balances</div></button>
+  </div>
+
+  <details class="omit">
+    <summary>What this guide leaves out (removed or superseded text)</summary>
+    <ul>
+      <li><b>Art. I §2</b> — Three-Fifths Clause (replaced by 14th Am.) and the first Congress's seat counts (expired)</li>
+      <li><b>Art. I §3</b> — Senators chosen by state legislatures and the vacancy process (replaced by 17th Am.)</li>
+      <li><b>Art. I §4</b> — December meeting date (changed by 20th Am.)</li>
+      <li><b>Art. I §9</b> — Protection of the slave trade until 1808 (expired)</li>
+      <li><b>Art. II §1</b> — Original electoral vote process where the runner-up became VP (replaced by 12th Am.); succession wording (clarified by 25th Am.)</li>
+      <li><b>Art. III §2</b> — Suits against a state by citizens of another state or foreign citizens (removed by 11th Am.)</li>
+      <li><b>Art. IV §2</b> — Fugitive Slave Clause (voided by 13th Am.)</li>
+      <li><b>Art. V</b> — Pre-1808 protections (expired)</li>
+      <li><b>Art. VII</b> — List of signers</li>
+    </ul>
+  </details>
+</section>
+
+<!-- ============ ARTICLE I ============ -->
+<section class="panel t-leg coded" id="a1">
+  <div class="banner">
+    <div class="kicker">Article I · Legislative Branch</div>
+    <h2>Congress makes the laws</h2>
+    <p>Congress is <b>bicameral</b> (House + Senate) and holds <b>enumerated powers</b> plus the Necessary and Proper Clause. It is the longest article, because the framers saw the legislature as the central branch.</p>
+    <div class="chips">
+      <span class="chip"><b>House</b> · 2-yr terms · by population</span>
+      <span class="chip"><b>Senate</b> · 6-yr terms · 2 per state</span>
+      <span class="chip"><b>10</b> sections</span>
+    </div>
+  </div>
+  <div class="pl-legend">
+    <span class="k pw">POWER</span> what the branch <b>can</b> do (incl. privileges)
+    <span class="k lim">LIMIT</span> what it <b>can't</b> do, or a restriction on a power
+    <span class="k rule">RULE</span> structure, terms &amp; qualifications
+  </div>
+  <div class="sections">
+    <div class="sec"><div class="num"><small>Sec</small><span>1</span></div><div class="body">
+      <h3>Legislative power</h3>
+      <ul><li class="pw">All legislative powers granted go to Congress <span class="term">bicameralism</span></li></ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>2</span></div><div class="body">
+      <h3>House of Representatives</h3>
+      <ul>
+        <li class="rule">Elected <span class="key">directly by the people</span> every <span class="key">2 years</span></li>
+        <li class="rule">Qualifications: <span class="key">25</span> years old · <span class="key">7</span> years a citizen · lives in the state</li>
+        <li class="rule">Seats apportioned by population · <span class="key">census every 10 years</span> · every state gets at least one</li>
+        <li class="rule">Governor calls special elections to fill vacancies</li>
+        <li class="pw">Chooses its <span class="key">Speaker</span> and other officers</li>
+        <li class="pw"><span class="key">Sole power of impeachment</span> (bringing charges)</li>
+      </ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>3</span></div><div class="body">
+      <h3>Senate</h3>
+      <ul>
+        <li class="rule"><span class="key">Two senators per state</span>, <span class="key">6-year</span> terms, one vote each</li>
+        <li class="rule">Staggered: one-third elected every 2 years</li>
+        <li class="rule">Qualifications: <span class="key">30</span> years old · <span class="key">9</span> years a citizen · lives in the state</li>
+        <li class="lim"><span class="key">Vice President</span> presides but votes <span class="key">only to break a tie</span></li>
+        <li class="pw">Chooses its officers, including a <span class="key">President pro tempore</span></li>
+        <li class="pw"><span class="key">Sole power to try impeachments</span> (Chief Justice presides when the President is tried)</li>
+        <li class="lim">Conviction requires <span class="key">2/3</span> of members present</li>
+        <li class="lim">Punishment is limited to removal and disqualification from office (a criminal trial is still possible)</li>
+      </ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>4</span></div><div class="body">
+      <h3>Elections &amp; meetings</h3>
+      <ul>
+        <li class="pw">States set the times, places, and manner of congressional elections, and <span class="key">Congress may change them</span></li>
+        <li class="rule">Congress must meet at least once a year</li>
+      </ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>5</span></div><div class="body">
+      <h3>Rules of each house</h3>
+      <ul>
+        <li class="pw">Each house judges its own members' elections and qualifications</li>
+        <li class="pw">Each house sets its own rules and punishes members for disorderly behavior</li>
+        <li class="lim">Expelling a member requires <span class="key">2/3</span></li>
+        <li class="rule">A majority is a <span class="key">quorum</span></li>
+        <li class="rule">Each keeps a published <span class="key">journal</span>; 1/5 of members can demand a recorded vote</li>
+        <li class="lim">Neither house may adjourn for more than 3 days without the other's consent</li>
+      </ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>6</span></div><div class="body">
+      <h3>Privileges &amp; restrictions</h3>
+      <ul>
+        <li class="rule">Paid from the Treasury by law (27th Am.: a pay raise waits until after the next election)</li>
+        <li class="pw">Free from arrest while going to or attending sessions, except for treason, felony, or breach of the peace</li>
+        <li class="pw">Can't be questioned elsewhere for what they say in Congress <span class="term">Speech or Debate</span></li>
+        <li class="lim">Can't take a federal office created, or given a raise, during their term</li>
+        <li class="lim">Can't hold another federal office while serving <span class="term">separation of powers</span></li>
+      </ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>7</span></div><div class="body">
+      <h3>How a bill becomes law</h3>
+      <ul>
+        <li class="pw"><span class="key">Revenue bills must start in the House</span>; the Senate may amend them</li>
+        <li class="lim">Every bill must go to the President, who can sign it or <span class="key">veto</span> it</li>
+        <li class="pw">Congress can <span class="key">override a veto with 2/3 of both houses</span></li>
+        <li class="rule">No action in <span class="key">10 days</span> (Sundays excepted) → law, unless Congress has adjourned, in which case it dies <span class="term">pocket veto</span></li>
+      </ul>
+      <p class="note">→ See the full flowchart in <b>Powers &amp; Processes</b>.</p>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>8</span></div><div class="body">
+      <h3>Enumerated powers of Congress</h3>
+      <div class="cols">
+        <div class="box pwbox"><h4>💰 Money &amp; economy</h4><ul>
+          <li class="pw">Tax for debts, defense, general welfare</li>
+          <li class="pw">Borrow money</li>
+          <li class="pw">Regulate foreign, interstate &amp; tribal commerce <span class="term">Commerce Clause</span></li>
+          <li class="pw">Coin money; weights &amp; measures</li>
+          <li class="pw">Punish counterfeiting</li>
+          <li class="pw">Bankruptcy laws</li></ul></div>
+        <div class="box pwbox"><h4>⚔ Defense &amp; war</h4><ul>
+          <li class="pw"><b>Declare war</b>; letters of marque</li>
+          <li class="pw">Raise and support armies</li>
+          <li class="pw">Maintain a navy</li>
+          <li class="pw">Make military rules</li>
+          <li class="pw">Call forth &amp; organize the militia</li>
+          <li class="pw">Punish piracy</li></ul></div>
+        <div class="box pwbox"><h4>🏛 Government</h4><ul>
+          <li class="pw">Naturalization rules</li>
+          <li class="pw">Post offices &amp; roads</li>
+          <li class="pw">Copyrights &amp; patents</li>
+          <li class="pw">Create lower federal courts</li>
+          <li class="pw">Govern D.C. &amp; federal property</li></ul></div>
+        <div class="box pwbox"><h4>🧩 Elastic clause</h4><ul>
+          <li class="pw">Make all laws <b>necessary and proper</b> to carry out these powers <span class="term">implied powers</span></li>
+          <li class="pw">Upheld in <i>McCulloch v. Maryland</i> (1819)</li></ul></div>
+        <div class="box limbox"><h4>⛓ Built-in limits</h4><ul>
+          <li class="lim">Taxes, duties &amp; excises must be uniform nationwide</li>
+          <li class="lim">Army funding can't run longer than 2 years</li>
+          <li class="lim">States appoint militia officers and do the training</li>
+          <li class="lim">The D.C. district can't exceed 10 miles square</li></ul></div>
+      </div>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>9</span></div><div class="body">
+      <h3>Limits on Congress</h3>
+      <ul>
+        <li class="lim"><span class="key">Habeas corpus</span> can't be suspended except in rebellion or invasion</li>
+        <li class="lim">No <span class="key">bill of attainder</span> (punishment without trial) or <span class="key">ex post facto law</span> (retroactive crime)</li>
+        <li class="lim">Direct taxes are apportioned by population (16th Am. exempts income tax)</li>
+        <li class="lim">No taxes on exports; no favoring one state's ports</li>
+        <li class="lim">No spending without an appropriation by law; accounts must be published <span class="term">power of the purse</span></li>
+        <li class="lim">No titles of nobility; no foreign gifts or titles for officials without Congress's consent <span class="term">Emoluments</span></li>
+      </ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>10</span></div><div class="body">
+      <h3>Limits on the states</h3>
+      <div class="cols">
+        <div class="box limbox"><h4>Never allowed</h4><ul>
+          <li class="lim">Treaties or alliances</li><li class="lim">Coin money or issue paper currency</li><li class="lim">Bills of attainder / ex post facto laws</li><li class="lim">Impair contracts</li><li class="lim">Titles of nobility</li></ul></div>
+        <div class="box limbox"><h4>Only with Congress's consent</h4><ul>
+          <li class="lim">Tax imports or exports</li><li class="lim">Keep troops or warships in peacetime</li><li class="lim">Compacts with other states or nations</li><li class="lim">Wage war, unless invaded</li></ul></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ ARTICLE II ============ -->
+<section class="panel t-exe coded" id="a2">
+  <div class="banner">
+    <div class="kicker">Article II · Executive Branch</div>
+    <h2>The President enforces the laws</h2>
+    <p>The President is chosen through the <b>Electoral College</b>, and shares key powers (treaties, appointments) with the Senate.</p>
+    <div class="chips">
+      <span class="chip"><b>4-year</b> term</span>
+      <span class="chip"><b>35+</b> years old</span>
+      <span class="chip"><b>Natural-born</b> citizen</span>
+      <span class="chip"><b>14 yrs</b> resident</span>
+    </div>
+  </div>
+  <div class="pl-legend">
+    <span class="k pw">POWER</span> what the branch <b>can</b> do (incl. duties)
+    <span class="k lim">LIMIT</span> what it <b>can't</b> do, or a restriction on a power
+    <span class="k rule">RULE</span> structure, terms &amp; qualifications
+  </div>
+  <div class="sections">
+    <div class="sec"><div class="num"><small>Sec</small><span>1</span></div><div class="body">
+      <h3>The office &amp; election</h3>
+      <ul>
+        <li class="pw">Executive power is vested in the President</li>
+        <li class="rule">Elected with a VP for a <span class="key">4-year</span> term</li>
+        <li class="rule">Each state's electors = its <span class="key">senators + representatives</span>, chosen as its legislature directs <span class="term">Electoral College</span></li>
+        <li class="lim">Members of Congress and federal officers can't serve as electors</li>
+        <li class="rule">Congress sets when electors are chosen and one national voting day</li>
+        <li class="rule">Qualifications: <span class="key">natural-born citizen · 35 · 14 years a resident</span></li>
+        <li class="rule">Congress may set the line of succession beyond the VP (see the 25th Am.)</li>
+        <li class="lim">Salary can't be raised or cut during the term, and no other federal or state payments are allowed</li>
+        <li class="rule">Oath: "preserve, protect and defend the Constitution"</li>
+      </ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>2</span></div><div class="body">
+      <h3>Powers &amp; their limits</h3>
+      <div class="cols">
+        <div class="box pwbox"><h4>✅ Powers</h4><ul>
+          <li class="pw"><b>Commander in Chief</b> of the armed forces and the federalized militia</li>
+          <li class="pw">Can require written opinions from department heads (origin of the Cabinet)</li>
+          <li class="pw">Grants <b>pardons &amp; reprieves</b> for federal crimes</li>
+          <li class="pw">Makes <b>treaties</b></li>
+          <li class="pw"><b>Nominates</b> ambassadors, Supreme Court justices &amp; officers</li>
+          <li class="pw">Makes <b>recess appointments</b> while the Senate is out</li></ul></div>
+        <div class="box limbox"><h4>⛔ Limits</h4><ul>
+          <li class="lim">Commands the militia only when it's called into federal service</li>
+          <li class="lim">Pardons can't cover <b>impeachment</b> or state crimes</li>
+          <li class="lim">Treaties need <b>2/3 of the Senate</b></li>
+          <li class="lim">Appointments need Senate <b>advice &amp; consent</b> (majority)</li>
+          <li class="lim">Recess appointments <b>expire</b> at the end of the next session</li>
+          <li class="lim">Congress decides who appoints "inferior officers"</li></ul></div>
+      </div>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>3</span></div><div class="body">
+      <h3>Duties</h3>
+      <ul>
+        <li class="pw">Gives a <span class="key">State of the Union</span> report and recommends laws</li>
+        <li class="pw">Can convene Congress in emergencies, and adjourn it if the houses disagree</li>
+        <li class="pw">Receives ambassadors (recognizes foreign governments)</li>
+        <li class="pw">"Take care that the laws be faithfully executed" <span class="term">Take Care Clause</span></li>
+        <li class="pw">Commissions all federal officers</li>
+      </ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>4</span></div><div class="body">
+      <h3>Impeachment</h3>
+      <ul><li class="lim">The President, VP, and civil officers are removed on conviction for <span class="key">treason, bribery, or other high crimes and misdemeanors</span></li></ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ ARTICLE III ============ -->
+<section class="panel t-jud coded" id="a3">
+  <div class="banner">
+    <div class="kicker">Article III · Judicial Branch</div>
+    <h2>The courts interpret the laws</h2>
+    <p>Only the <b>Supreme Court</b> is required; Congress creates the lower courts. Judges serve during "good behaviour." Judicial review isn't written here. It comes from <i>Marbury v. Madison</i> (1803).</p>
+    <div class="chips">
+      <span class="chip"><b>Life</b> tenure</span>
+      <span class="chip">Pay <b>can't be cut</b></span>
+      <span class="chip"><b>Only crime</b> defined: treason</span>
+    </div>
+  </div>
+  <div class="pl-legend">
+    <span class="k pw">POWER</span> what the courts <b>can</b> do (incl. protections)
+    <span class="k lim">LIMIT</span> what they <b>can't</b> do, or a restriction on a power
+    <span class="k rule">RULE</span> structure, terms &amp; qualifications
+  </div>
+  <div class="sections">
+    <div class="sec"><div class="num"><small>Sec</small><span>1</span></div><div class="body">
+      <h3>Federal courts</h3>
+      <ul>
+        <li class="pw">Judicial power is vested in one Supreme Court</li>
+        <li class="rule">Lower courts exist only as Congress creates them</li>
+        <li class="pw">Judges serve during <span class="key">good behaviour</span> <span class="term">life tenure</span></li>
+        <li class="pw">Salaries can't be reduced while in office <span class="term">judicial independence</span></li>
+      </ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>2</span></div><div class="body">
+      <h3>Jurisdiction &amp; jury trials</h3>
+      <ul>
+        <li class="pw">Federal courts hear cases under the <span class="key">Constitution, federal laws, and treaties</span>; ambassador cases; maritime cases; cases where the U.S. is a party; disputes between states; between citizens of different states <span class="term">diversity</span>; and cases with foreign nations</li>
+      </ul>
+      <div class="cols">
+        <div class="box pwbox"><h4>Original jurisdiction</h4><ul><li class="pw">The Supreme Court hears these first</li><li class="pw">Cases with ambassadors</li><li class="pw">Cases where a state is a party</li></ul></div>
+        <div class="box pwbox"><h4>Appellate jurisdiction</h4><ul><li class="pw">Hears all other cases on appeal, both law and fact</li></ul></div>
+        <div class="box limbox"><h4>Limits</h4><ul><li class="lim">Congress can make exceptions to appellate jurisdiction</li><li class="lim">Courts hear only actual "cases and controversies"</li></ul></div>
+      </div>
+      <ul style="margin-top:8px"><li class="lim">Federal crimes (except impeachment) <span class="key">must</span> be tried by jury in the state where they happened</li></ul>
+    </div></div>
+
+    <div class="sec"><div class="num"><small>Sec</small><span>3</span></div><div class="body">
+      <h3>Treason</h3>
+      <ul>
+        <li class="lim">Treason is <span class="key">only</span> levying war against the U.S., or adhering to its enemies by giving them aid and comfort</li>
+        <li class="lim">Conviction requires <span class="key">2 witnesses to the same overt act</span> or a confession in open court</li>
+        <li class="pw">Congress sets the punishment for treason</li>
+        <li class="lim">The punishment can't extend to the traitor's family <span class="term">no corruption of blood</span></li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ ARTICLE IV ============ -->
+<section class="panel t-sta" id="a4">
+  <div class="banner">
+    <div class="kicker">Article IV · Federalism</div>
+    <h2>How the states relate</h2>
+    <p>This article covers how states treat each other and what the national government owes them.</p>
+  </div>
+  <div class="sections">
+    <div class="sec"><div class="num"><small>Sec</small><span>1</span></div><div class="body">
+      <h3>Full faith and credit</h3>
+      <ul><li>States honor each other's public acts, records, and court rulings (e.g., marriages, licenses, judgments)</li></ul>
+    </div></div>
+    <div class="sec"><div class="num"><small>Sec</small><span>2</span></div><div class="body">
+      <h3>Interstate obligations</h3>
+      <ul>
+        <li>Citizens get the <span class="key">privileges and immunities</span> of citizens in every state; states can't discriminate against out-of-staters</li>
+        <li>Fugitives charged with crimes must be returned on demand <span class="term">extradition</span></li>
+      </ul>
+    </div></div>
+    <div class="sec"><div class="num"><small>Sec</small><span>3</span></div><div class="body">
+      <h3>New states &amp; territories</h3>
+      <ul>
+        <li><span class="key">Congress admits new states</span>; none can be carved from or merged with existing states without their consent</li>
+        <li>Congress governs federal territory and property</li>
+      </ul>
+    </div></div>
+    <div class="sec"><div class="num"><small>Sec</small><span>4</span></div><div class="body">
+      <h3>Guarantee clause</h3>
+      <ul>
+        <li>Every state is guaranteed a <span class="key">republican form of government</span></li>
+        <li>Federal protection from invasion, and from domestic violence when the state requests it</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ ARTICLE V ============ -->
+<section class="panel t-peo" id="a5">
+  <div class="banner">
+    <div class="kicker">Article V · Amendment</div>
+    <h2>Changing the Constitution</h2>
+    <p>Amendments are possible but hard, because every route requires <b>supermajorities</b>. There are two ways to propose and two ways to ratify.</p>
+  </div>
+  <div class="flowcard">
+    <div class="paths">
+      <div class="path">
+        <h4>Step 1 · Propose</h4>
+        <div class="step"><b>Option A — used for all 27</b>2/3 of the House <i>and</i> 2/3 of the Senate</div>
+        <div class="or">— OR —</div>
+        <div class="step"><b>Option B — never used</b>2/3 of state legislatures ask Congress to call a national convention</div>
+      </div>
+      <div class="path">
+        <h4>Step 2 · Ratify (Congress picks the method)</h4>
+        <div class="step"><b>Option A — used 26 times</b>3/4 of state legislatures (38 of 50)</div>
+        <div class="or">— OR —</div>
+        <div class="step"><b>Option B — used once (21st Am.)</b>Ratifying conventions in 3/4 of states</div>
+      </div>
+    </div>
+    <p class="note">🔒 <b>Permanent protection:</b> no state can lose its equal vote in the Senate without its own consent.<br>Note that the President plays no formal role in amendments: no signature and no veto.</p>
+  </div>
+</section>
+
+<!-- ============ ARTICLE VI ============ -->
+<section class="panel t-neu" id="a6">
+  <div class="banner">
+    <div class="kicker">Article VI</div>
+    <h2>Supreme law of the land</h2>
+    <p>Federal law beats conflicting state law.</p>
+  </div>
+  <div class="sections">
+    <div class="sec"><div class="num"><small>¶</small><span>1</span></div><div class="body"><h3>Prior debts</h3><ul><li>Debts made under the Articles of Confederation stay valid</li></ul></div></div>
+    <div class="sec"><div class="num"><small>¶</small><span>2</span></div><div class="body"><h3>Supremacy Clause</h3><ul><li>The Constitution, federal laws made under it, and treaties are the <span class="key">supreme law of the land</span></li><li>State judges are bound by them, even over their own state's laws</li></ul></div></div>
+    <div class="sec"><div class="num"><small>¶</small><span>3</span></div><div class="body"><h3>Oaths</h3><ul><li>All federal and state officials swear to support the Constitution</li><li><span class="key">No religious test</span> may ever be required for office</li></ul></div></div>
+  </div>
+</section>
+
+<!-- ============ ARTICLE VII ============ -->
+<section class="panel t-neu" id="a7">
+  <div class="banner">
+    <div class="kicker">Article VII</div>
+    <h2>Ratification</h2>
+    <p>This article explains how the Constitution came into effect.</p>
+  </div>
+  <div class="sections">
+    <div class="sec"><div class="num"><small>Key</small><span>9</span></div><div class="body"><h3>Nine of thirteen</h3><ul><li>Ratification by conventions in <span class="key">9 of the 13 states</span> put it into effect among those states</li></ul></div></div>
+    <div class="sec"><div class="num"><small>Date</small><span>✍</span></div><div class="body"><h3>Signed September 17, 1787</h3><ul><li>Signed at the Philadelphia Convention, with George Washington presiding</li></ul></div></div>
+    <div class="sec"><div class="num"><small>Ctx</small><span>⚔</span></div><div class="body"><h3>The ratification debate</h3>
+      <div class="cols">
+        <div class="box"><h4>Federalists</h4><ul><li>Hamilton, Madison, Jay</li><li><i>The Federalist Papers</i> (e.g., Fed 10, 51)</li><li>Wanted a stronger national government</li></ul></div>
+        <div class="box"><h4>Anti-Federalists</h4><ul><li>e.g., Brutus, Federal Farmer</li><li>Feared a distant, powerful government</li><li>Demanded a bill of rights</li></ul></div>
+      </div></div></div>
+  </div>
+</section>
+
+<!-- ============ BILL OF RIGHTS ============ -->
+<section class="panel t-peo" id="bor">
+  <div class="banner">
+    <div class="kicker">Amendments I–X · 1791</div>
+    <h2>Bill of Rights</h2>
+    <p>The Bill of Rights was added to win over the Anti-Federalists. It originally limited only the <b>federal</b> government. Most of it now applies to the states through the 14th Amendment <span class="term">incorporation</span>.</p>
+  </div>
+  <div class="groups">
+    <span class="t-peo">I–III · Freedoms</span>
+    <span class="t-jud">IV–VIII · Justice &amp; the accused</span>
+    <span class="t-sta">IX–X · Unlisted rights &amp; powers</span>
+  </div>
+  <div class="amend">
+    <div class="am t-peo"><span class="rn">I</span><h4>Expression &amp; religion</h4><ul><li>No established religion · free exercise</li><li>Speech &amp; press</li><li>Assemble &amp; petition</li></ul></div>
+    <div class="am t-peo"><span class="rn">II</span><h4>Bear arms</h4><ul><li>Militia being necessary, the right to keep and bear arms shall not be infringed</li></ul></div>
+    <div class="am t-peo"><span class="rn">III</span><h4>No quartering</h4><ul><li>No soldiers in homes in peacetime without consent</li><li>In wartime only as law allows</li></ul></div>
+    <div class="am t-jud"><span class="rn">IV</span><h4>Search &amp; seizure</h4><ul><li>No unreasonable searches or seizures</li><li>Warrants need probable cause, an oath, and specifics</li></ul></div>
+    <div class="am t-jud"><span class="rn">V</span><h4>Rights of the accused</h4><ul><li>Grand jury for serious crimes</li><li>No double jeopardy</li><li>No self-incrimination</li><li>Due process</li><li>Just compensation <span class="term">eminent domain</span></li></ul></div>
+    <div class="am t-jud"><span class="rn">VI</span><h4>Criminal trials</h4><ul><li>Speedy, public trial; impartial local jury</li><li>Know the charges; confront witnesses</li><li>Compel favorable witnesses</li><li>Right to a lawyer</li></ul></div>
+    <div class="am t-jud"><span class="rn">VII</span><h4>Civil juries</h4><ul><li>Jury in common-law suits over $20</li><li>Jury's facts not re-examined except by common-law rules</li></ul></div>
+    <div class="am t-jud"><span class="rn">VIII</span><h4>Punishment</h4><ul><li>No excessive bail or fines</li><li>No cruel and unusual punishment</li></ul></div>
+    <div class="am t-sta"><span class="rn">IX</span><h4>Unlisted rights</h4><ul><li>Listing some rights doesn't deny others the people keep</li></ul></div>
+    <div class="am t-sta"><span class="rn">X</span><h4>Reserved powers</h4><ul><li>Powers not delegated to the U.S. nor denied to states belong to the states or the people <span class="term">federalism</span></li></ul></div>
+  </div>
+</section>
+
+<!-- ============ POWERS & PROCESSES ============ -->
+<section class="panel t-neu" id="powers">
+  <div class="banner">
+    <div class="kicker">Cross-cutting</div>
+    <h2>⚖ Powers &amp; Processes</h2>
+    <p>Who holds each power, how the major processes work step by step, and how each branch checks the others.</p>
+    <div class="legend" style="margin:12px 0 0">
+      <span class="t-leg"><i></i>Congress</span><span class="t-exe"><i></i>President</span><span class="t-jud"><i></i>Courts</span><span class="t-sta"><i></i>States</span><span class="t-peo"><i></i>People</span>
+    </div>
+  </div>
+
+  <h2 class="sub">Step-by-step processes</h2>
+  <p class="subtext">Each step is numbered and shows <b>who acts</b> (color), <b>what happens</b>, and the <span class="src" style="vertical-align:1px">📜 source</span> in the Constitution that grants that power.</p>
+
+  <div class="flowcard">
+    <h3>📜 Making a law</h3>
+    <div class="flow">
+      <div class="step t-leg"><div class="who">House of Representatives</div><div class="sh"><span class="n">1</span><b>Passes the bill</b></div><p>Either house can start a bill, except tax (revenue) bills, which must start in the House.</p><span class="src">📜 Art. I, §1 · Art. I, §7, cl. 1</span></div>
+      <div class="step t-leg"><div class="who">Senate</div><div class="sh"><span class="n">2</span><b>Passes the same bill</b></div><p>Both houses must pass identical text before it goes to the President.</p><span class="src">📜 Art. I, §7, cl. 2</span></div>
+      <div class="step t-exe"><div class="who">President</div><div class="sh"><span class="n">3</span><b>Signs or vetoes</b></div><p>Sign → law. Veto → returned with objections. No action for 10 days (Sundays excepted) → law, unless Congress has adjourned (pocket veto).</p><span class="src">📜 Art. I, §7, cl. 2</span></div>
+      <div class="step t-leg"><div class="who">Both houses</div><div class="sh"><span class="n">4</span><b>Override a veto</b></div><p>2/3 of each house votes again, and the bill becomes law without the President's signature.</p><span class="src">📜 Art. I, §7, cl. 2</span></div>
+      <div class="step t-jud"><div class="who">Federal courts</div><div class="sh"><span class="n">5</span><b>Judicial review</b></div><p>Courts can strike down the law if it violates the Constitution.</p><span class="src">📜 Art. III, §2 (implied) · <i>Marbury v. Madison</i></span></div>
+    </div>
+  </div>
+
+  <div class="flowcard">
+    <h3>✏ Amending the Constitution</h3>
+    <div class="paths">
+      <div class="path"><h4>Step 1 · Propose</h4>
+        <div class="step t-leg"><div class="who">Congress · used for all 27</div><div class="sh"><span class="n">1A</span><b>2/3 of both houses</b></div><p>The House and Senate each approve by a two-thirds vote.</p><span class="src">📜 Art. V</span></div>
+        <div class="or">— OR —</div>
+        <div class="step t-sta"><div class="who">States · never used</div><div class="sh"><span class="n">1B</span><b>National convention</b></div><p>2/3 of state legislatures apply, and Congress must call a convention.</p><span class="src">📜 Art. V</span></div>
+      </div>
+      <div class="path"><h4>Step 2 · Ratify</h4>
+        <div class="step t-sta"><div class="who">States · used 26 times</div><div class="sh"><span class="n">2A</span><b>3/4 of state legislatures</b></div><p>38 of the 50 legislatures approve.</p><span class="src">📜 Art. V</span></div>
+        <div class="or">— OR —</div>
+        <div class="step t-sta"><div class="who">States · used once (21st Am.)</div><div class="sh"><span class="n">2B</span><b>Conventions in 3/4 of states</b></div><p>Special ratifying conventions approve. Congress picks which method (2A or 2B) is used.</p><span class="src">📜 Art. V</span></div>
+      </div>
+    </div>
+    <p class="note">The President has no role: no signature and no veto. 🔒 No state can lose its equal Senate vote without its consent (<span class="src">📜 Art. V</span>).</p>
+  </div>
+
+  <div class="flowcard">
+    <h3>⚖ Impeachment &amp; removal</h3>
+    <div class="flow">
+      <div class="step t-leg"><div class="who">House</div><div class="sh"><span class="n">1</span><b>Impeaches</b></div><p>Formally charges the official by a simple majority vote.</p><span class="src">📜 Art. I, §2, cl. 5</span></div>
+      <div class="step t-leg"><div class="who">Senate</div><div class="sh"><span class="n">2</span><b>Holds the trial</b></div><p>Senators sit under oath. The Chief Justice presides if the President is on trial.</p><span class="src">📜 Art. I, §3, cl. 6</span></div>
+      <div class="step t-leg"><div class="who">Senate</div><div class="sh"><span class="n">3</span><b>Votes to convict</b></div><p>2/3 of senators present are needed to convict.</p><span class="src">📜 Art. I, §3, cl. 6</span></div>
+      <div class="step t-neu"><div class="who">Result</div><div class="sh"><span class="n">4</span><b>Removal</b></div><p>Removal from office, with an optional ban from future office. A criminal trial is still possible.</p><span class="src">📜 Art. I, §3, cl. 7 · Art. II, §4</span></div>
+    </div>
+    <p class="note">Who can be impeached and for what: the President, VP, and civil officers, for treason, bribery, or other high crimes and misdemeanors (<span class="src">📜 Art. II, §4</span>). Pardons can't stop it (<span class="src">📜 Art. II, §2, cl. 1</span>).</p>
+  </div>
+
+  <div class="flowcard">
+    <h3>🗳 Electing the President</h3>
+    <div class="flow">
+      <div class="step t-sta"><div class="who">State legislatures</div><div class="sh"><span class="n">1</span><b>Choose electors</b></div><p>Each state gets electors equal to its senators + representatives, chosen however its legislature directs (today, by popular vote).</p><span class="src">📜 Art. II, §1, cl. 2</span></div>
+      <div class="step t-sta"><div class="who">Electors</div><div class="sh"><span class="n">2</span><b>Cast electoral votes</b></div><p>They meet in their states on one nationwide day set by Congress, casting separate votes for President and VP.</p><span class="src">📜 Art. II, §1, cl. 4 · 12th Am.</span></div>
+      <div class="step t-leg"><div class="who">Congress</div><div class="sh"><span class="n">3</span><b>Counts the votes</b></div><p>The President of the Senate opens the certificates before both houses. A majority of electors wins.</p><span class="src">📜 12th Am.</span></div>
+      <div class="step t-leg"><div class="who">House (if needed)</div><div class="sh"><span class="n">4</span><b>Contingent election</b></div><p>If no one has a majority, the House picks from the top 3, with one vote per state delegation.</p><span class="src">📜 12th Am.</span></div>
+    </div>
+  </div>
+
+  <div class="flowcard">
+    <h3>🤝 Making a treaty</h3>
+    <div class="flow">
+      <div class="step t-exe"><div class="who">President</div><div class="sh"><span class="n">1</span><b>Negotiates the treaty</b></div><p>The President makes treaties with foreign nations.</p><span class="src">📜 Art. II, §2, cl. 2</span></div>
+      <div class="step t-leg"><div class="who">Senate</div><div class="sh"><span class="n">2</span><b>Gives consent</b></div><p>2/3 of senators present must approve. The House has no vote.</p><span class="src">📜 Art. II, §2, cl. 2</span></div>
+      <div class="step t-neu"><div class="who">Result</div><div class="sh"><span class="n">3</span><b>Supreme law</b></div><p>Ratified treaties bind all state judges.</p><span class="src">📜 Art. VI, cl. 2</span></div>
+    </div>
+  </div>
+
+  <div class="flowcard">
+    <h3>👤 Appointing judges &amp; officers</h3>
+    <div class="flow">
+      <div class="step t-exe"><div class="who">President</div><div class="sh"><span class="n">1</span><b>Nominates</b></div><p>This covers ambassadors, Supreme Court justices, and other federal officers.</p><span class="src">📜 Art. II, §2, cl. 2</span></div>
+      <div class="step t-leg"><div class="who">Senate</div><div class="sh"><span class="n">2</span><b>Confirms or rejects</b></div><p>A simple majority gives "advice and consent."</p><span class="src">📜 Art. II, §2, cl. 2</span></div>
+      <div class="step t-exe"><div class="who">President</div><div class="sh"><span class="n">3</span><b>Commissions the officer</b></div><p>Formally installs the appointee. During a Senate recess, the President can make temporary appointments instead.</p><span class="src">📜 Art. II, §3 · Art. II, §2, cl. 3</span></div>
+    </div>
+  </div>
+
+  <div class="flowcard">
+    <h3>⭐ Admitting a new state</h3>
+    <div class="flow">
+      <div class="step t-leg"><div class="who">Congress</div><div class="sh"><span class="n">1</span><b>Passes an admission law</b></div><p>Congress has the power to admit new states.</p><span class="src">📜 Art. IV, §3, cl. 1</span></div>
+      <div class="step t-sta"><div class="who">Affected states</div><div class="sh"><span class="n">2</span><b>Consent (if needed)</b></div><p>Required only if the new state is carved from, or merges, existing states.</p><span class="src">📜 Art. IV, §3, cl. 1</span></div>
+      <div class="step t-neu"><div class="who">Result</div><div class="sh"><span class="n">3</span><b>Equal footing</b></div><p>The new state gets 2 senators, House seats by population, and a guaranteed republican government.</p><span class="src">📜 Art. I, §2–3 · Art. IV, §4</span></div>
+    </div>
+  </div>
+
+  <div class="flowcard">
+    <h3>⚔ Going to war</h3>
+    <div class="flow">
+      <div class="step t-leg"><div class="who">Congress</div><div class="sh"><span class="n">1</span><b>Declares war</b></div><p>Only Congress can formally declare war.</p><span class="src">📜 Art. I, §8, cl. 11</span></div>
+      <div class="step t-leg"><div class="who">Congress</div><div class="sh"><span class="n">2</span><b>Funds the military</b></div><p>Raises armies (funding limited to 2 years at a time) and maintains a navy.</p><span class="src">📜 Art. I, §8, cl. 12–13</span></div>
+      <div class="step t-exe"><div class="who">President</div><div class="sh"><span class="n">3</span><b>Commands the forces</b></div><p>Directs the military as Commander in Chief.</p><span class="src">📜 Art. II, §2, cl. 1</span></div>
+    </div>
+  </div>
+
+  <h2 class="sub">Who holds which power?</h2>
+  <p class="subtext">These are the powers teachers most often test.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Power</th><th>Who has it</th><th>Check / limit</th><th>📜 Granted by</th></tr>
+    <tr><td><b>Make laws</b></td><td><span class="pill t-leg">Congress</span></td><td><span class="pill t-exe">Veto</span><span class="pill t-jud">Judicial review</span></td><td><span class="src">Art. I, §1 · §7</span></td></tr>
+    <tr><td><b>Veto bills</b></td><td><span class="pill t-exe">President</span></td><td><span class="pill t-leg">2/3 override in both houses</span></td><td><span class="src">Art. I, §7, cl. 2</span></td></tr>
+    <tr><td><b>Start tax (revenue) bills</b></td><td><span class="pill t-leg">House</span></td><td>Senate may amend</td><td><span class="src">Art. I, §7, cl. 1</span></td></tr>
+    <tr><td><b>Tax &amp; spend</b></td><td><span class="pill t-leg">Congress</span></td><td>Must be uniform; no export taxes; spending needs an appropriation</td><td><span class="src">Art. I, §8, cl. 1 · §9</span></td></tr>
+    <tr><td><b>Regulate commerce</b></td><td><span class="pill t-leg">Congress</span></td><td>No favoring one state's ports</td><td><span class="src">Art. I, §8, cl. 3</span></td></tr>
+    <tr><td><b>Declare war</b></td><td><span class="pill t-leg">Congress</span></td><td>Army funding limited to 2 years</td><td><span class="src">Art. I, §8, cl. 11–12</span></td></tr>
+    <tr><td><b>Command the military</b></td><td><span class="pill t-exe">President</span></td><td><span class="pill t-leg">Funding &amp; war declarations</span></td><td><span class="src">Art. II, §2, cl. 1</span></td></tr>
+    <tr><td><b>Make treaties</b></td><td><span class="pill t-exe">President</span></td><td><span class="pill t-leg">2/3 of Senate</span></td><td><span class="src">Art. II, §2, cl. 2</span></td></tr>
+    <tr><td><b>Appoint judges &amp; officers</b></td><td><span class="pill t-exe">President</span></td><td><span class="pill t-leg">Senate majority</span></td><td><span class="src">Art. II, §2, cl. 2</span></td></tr>
+    <tr><td><b>Recess appointments</b></td><td><span class="pill t-exe">President</span></td><td>Expire at end of next Senate session</td><td><span class="src">Art. II, §2, cl. 3</span></td></tr>
+    <tr><td><b>Pardon</b></td><td><span class="pill t-exe">President</span></td><td>Federal crimes only; not impeachment</td><td><span class="src">Art. II, §2, cl. 1</span></td></tr>
+    <tr><td><b>Call Congress into session</b></td><td><span class="pill t-exe">President</span></td><td>Extraordinary occasions only</td><td><span class="src">Art. II, §3</span></td></tr>
+    <tr><td><b>Impeach</b></td><td><span class="pill t-leg">House</span></td><td>Simple majority</td><td><span class="src">Art. I, §2, cl. 5</span></td></tr>
+    <tr><td><b>Try impeachments</b></td><td><span class="pill t-leg">Senate</span></td><td>2/3 to convict; Chief Justice presides for the President</td><td><span class="src">Art. I, §3, cl. 6–7</span></td></tr>
+    <tr><td><b>Interpret laws &amp; Constitution</b></td><td><span class="pill t-jud">Courts</span></td><td><span class="pill t-leg">Congress sets lower courts &amp; appellate exceptions</span><span class="pill t-peo">Amendments</span></td><td><span class="src">Art. III, §1–2</span></td></tr>
+    <tr><td><b>Create lower federal courts</b></td><td><span class="pill t-leg">Congress</span></td><td>—</td><td><span class="src">Art. I, §8, cl. 9 · Art. III, §1</span></td></tr>
+    <tr><td><b>Define punishment for treason</b></td><td><span class="pill t-leg">Congress</span></td><td>No corruption of blood; 2 witnesses to convict</td><td><span class="src">Art. III, §3</span></td></tr>
+    <tr><td><b>Propose amendments</b></td><td><span class="pill t-leg">Congress (2/3)</span> or <span class="pill t-sta">States via convention (2/3)</span></td><td>Must be ratified</td><td><span class="src">Art. V</span></td></tr>
+    <tr><td><b>Ratify amendments</b></td><td><span class="pill t-sta">3/4 of states</span></td><td>Congress picks legislatures or conventions</td><td><span class="src">Art. V</span></td></tr>
+    <tr><td><b>Admit new states</b></td><td><span class="pill t-leg">Congress</span></td><td>Affected states must consent to splits or mergers</td><td><span class="src">Art. IV, §3, cl. 1</span></td></tr>
+    <tr><td><b>Govern federal territory</b></td><td><span class="pill t-leg">Congress</span></td><td>—</td><td><span class="src">Art. IV, §3, cl. 2</span></td></tr>
+    <tr><td><b>Run congressional elections</b></td><td><span class="pill t-sta">States</span></td><td><span class="pill t-leg">Congress may alter</span></td><td><span class="src">Art. I, §4, cl. 1</span></td></tr>
+    <tr><td><b>Choose presidential electors</b></td><td><span class="pill t-sta">State legislatures</span></td><td>Congress sets the voting day</td><td><span class="src">Art. II, §1, cl. 2–4</span></td></tr>
+    <tr><td><b>Judge members &amp; expel</b></td><td><span class="pill t-leg">Each house</span></td><td>Expulsion needs 2/3</td><td><span class="src">Art. I, §5</span></td></tr>
+    <tr><td><b>Break Senate ties</b></td><td><span class="pill t-exe">Vice President</span></td><td>Votes only on a tie</td><td><span class="src">Art. I, §3, cl. 4</span></td></tr>
+    <tr><td><b>Suspend habeas corpus</b></td><td><span class="pill t-leg">Congress</span> (generally understood)</td><td>Only in rebellion or invasion</td><td><span class="src">Art. I, §9, cl. 2</span></td></tr>
+  </table></div>
+
+  <h2 class="sub">Checks &amp; balances</h2>
+  <p class="subtext">Each branch can check the other two.</p>
+  <div class="checks">
+    <div class="check t-leg"><h4>Congress checks…</h4>
+      <div class="on">→ the President</div><ul><li>Override vetoes (2/3) <span class="src">I §7</span></li><li>Impeach &amp; remove <span class="src">I §2–3</span></li><li>Senate rejects treaties &amp; appointees <span class="src">II §2</span></li><li>Controls funding; declares war <span class="src">I §8–9</span></li></ul>
+      <div class="on">→ the Courts</div><ul><li>Senate confirms judges <span class="src">II §2</span></li><li>Impeach judges <span class="src">I §2–3</span></li><li>Creates lower courts; sets appellate exceptions <span class="src">III §1–2</span></li><li>Proposes amendments <span class="src">V</span></li></ul></div>
+    <div class="check t-exe"><h4>The President checks…</h4>
+      <div class="on">→ Congress</div><ul><li>Veto <span class="src">I §7</span></li><li>Call special sessions <span class="src">II §3</span></li><li>Recommend legislation (State of the Union) <span class="src">II §3</span></li></ul>
+      <div class="on">→ the Courts</div><ul><li>Nominates judges <span class="src">II §2</span></li><li>Pardons <span class="src">II §2</span></li><li>Enforces rulings <span class="src">II §3</span></li></ul></div>
+    <div class="check t-jud"><h4>The Courts check…</h4>
+      <div class="on">→ Congress</div><ul><li>Strike down unconstitutional laws <span class="src">III §2 · <i>Marbury</i></span></li></ul>
+      <div class="on">→ the President</div><ul><li>Strike down unconstitutional executive actions <span class="src">III §2</span></li><li>Chief Justice presides over presidential impeachment trials <span class="src">I §3</span></li></ul></div>
+  </div>
+
+  <h2 class="sub">Federal vs. state powers</h2>
+  <p class="subtext">This is federalism in four boxes.</p>
+  <div class="venn">
+    <div class="check t-leg"><h4>Delegated (federal only)</h4><ul><li>Declare war; armed forces</li><li>Coin money</li><li>Regulate interstate &amp; foreign commerce</li><li>Treaties &amp; foreign policy</li><li>Post offices; naturalization</li></ul><p class="note">Art. I §8</p></div>
+    <div class="check t-sta"><h4>Reserved (states)</h4><ul><li>Run elections</li><li>Schools, local government</li><li>Marriage, licenses</li><li>Police power (health, safety)</li><li>Ratify amendments</li></ul><p class="note">10th Amendment</p></div>
+    <div class="check t-peo"><h4>Concurrent (both)</h4><ul><li>Tax</li><li>Borrow money</li><li>Make &amp; enforce laws</li><li>Establish courts</li></ul><p class="note">Art. I §8 + 10th Amendment</p></div>
+    <div class="check t-exe"><h4>Denied to both</h4><ul><li>Bills of attainder</li><li>Ex post facto laws</li><li>Titles of nobility</li><li>Taxes on exports (federal) / import duties without consent (states)</li></ul><p class="note">Art. I §9–10</p></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  try{var t=localStorage.getItem('csg-theme');if(t)root.setAttribute('data-theme',t);}catch(e){}
+  document.getElementById('theme').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('csg-theme',next);}catch(e){}
+  });
+
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(id,scroll){
+    if(!document.getElementById(id)) id='overview';
+    tabs.forEach(function(t){
+      var on=t.dataset.tab===id;
+      t.setAttribute('aria-selected',on?'true':'false');
+      if(on&&t.scrollIntoView) t.scrollIntoView({block:'nearest',inline:'nearest'});
+    });
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id===id);});
+    try{history.replaceState(null,'','#'+id);}catch(e){}
+    if(scroll) window.scrollTo({top:0,behavior:'smooth'});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.tab,true);});});
+  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go,true);});});
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='INPUT')return;
+    var i=tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true';});
+    if(e.key==='ArrowRight'&&i<tabs.length-1)show(tabs[i+1].dataset.tab,true);
+    if(e.key==='ArrowLeft'&&i>0)show(tabs[i-1].dataset.tab,true);
+  });
+  show((location.hash||'#overview').slice(1),false);
+})();
+</script>
+</body>
+</html>
